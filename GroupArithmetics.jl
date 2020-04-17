@@ -34,12 +34,10 @@ function U_gen(n::Integer)  # generators of U(n)
     # U(n) is cyclic iff n = 1,2,4,p^k or 2p^k for some odd prime p and integer k
     pfactor = Dict(factor(n))
     error = "U($n) has no generator."
-    if n != 2 || n != 4
+    if n != 2 && n != 4
         length(pfactor) > 2 && return error
         factors = collect(keys(pfactor))
         if length(factors) == 2 && (!(2 in factors) || pfactor[2] != 1)
-            return error
-        elseif length(factors) == 1 && factors[1] == 2
             return error
         end
     end
